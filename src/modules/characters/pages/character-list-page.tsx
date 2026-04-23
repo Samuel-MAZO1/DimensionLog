@@ -39,7 +39,7 @@ export function CharacterListPage() {
   ) ?? [];
 
   const hasNext = visibleCharacters.length === PAGE_SIZE &&
-    (pagination.localSlice < Math.floor(20 / PAGE_SIZE) - 1 || data?.info.next !== null);
+    (pagination.localSlice < Math.floor(20 / PAGE_SIZE) - 1 || data?.info.next != null);
   const hasPrev = pagination.visualPage > 1;
 
   function handleSelectCharacter(id: number) {

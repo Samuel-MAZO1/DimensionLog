@@ -3,6 +3,7 @@ import { useCharacterDetail } from '../../../modules/characters';
 import { formatEpisodeCountDl, mapStatusToColorDl } from '../../../modules/characters';
 import { Badge, Button, ErrorMessage, Skeleton, DetailLayout } from '../../../design';
 import { useLastVisited } from '../../../modules/history/use-last-visited';
+import { useEffect } from 'react';
 
 export function CharacterDetailPage() {
   const { id: idParam } = useParams<{ id: string }>();
@@ -13,7 +14,9 @@ export function CharacterDetailPage() {
   const { data: character, isLoading, isError, error } = useCharacterDetail(validId);
 
   const { saveLastVisited } = useLastVisited();
+  useEffect(() => {
   if (character) saveLastVisited(character.id);
+}, [character]);
 
   return (
     <DetailLayout
